@@ -15,6 +15,11 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LearningContext"));
 });
 
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
